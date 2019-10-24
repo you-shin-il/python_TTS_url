@@ -23,18 +23,19 @@ def getMetadata():
     message = CLIENT_ID + ':' + timestamp
 
     #python 3.x
-    #CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET, 'utf-8')
-    #message_bytes = bytes(message, 'utf-8')
-    #signature = hmac.new(CLIENT_SECRET_BYTES, message_bytes, hashlib.sha256).hexdigest()
+    CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET, 'utf-8')
+    message_bytes = bytes(message, 'utf-8')
+    signature = hmac.new(CLIENT_SECRET_BYTES, message_bytes, hashlib.sha256).hexdigest()
 
     #python 2.x
-    CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET).encode('utf-8')
-    message_bytes = bytes(message).encode('utf-8')
-    signature = hmac.new(CLIENT_SECRET, message, hashlib.sha256).hexdigest()
+    # CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET).encode('utf-8')
+    # message_bytes = bytes(message).encode('utf-8')
+    # signature = hmac.new(CLIENT_SECRET, message, hashlib.sha256).hexdigest()
 
     metadata = [('x-auth-clientkey', CLIENT_KEY),
                 ('x-auth-timestamp', timestamp),
                 ('x-auth-signature', signature)]
+
     return metadata
 
 def credentials(context, callback):
