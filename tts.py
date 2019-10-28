@@ -32,6 +32,7 @@ def getMetadata():
     # message_bytes = bytes(message).encode('utf-8')
     # signature = hmac.new(CLIENT_SECRET, message, hashlib.sha256).hexdigest()
 
+    print(signature)
     metadata = [('x-auth-clientkey', CLIENT_KEY),
                 ('x-auth-timestamp', timestamp),
                 ('x-auth-signature', signature)]
