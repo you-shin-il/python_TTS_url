@@ -11,9 +11,9 @@ import hmac
 import hashlib
 
 # Config for GiGA Genie gRPC
-CLIENT_ID = 'Y2xpZW50X2lkMTU3MDY3NTM2MDA0Ng=='
-CLIENT_KEY = 'Y2xpZW50X2tleTE1NzA2NzUzNjAwNDY='
-CLIENT_SECRET = 'Y2xpZW50X3NlY3JldDE1NzA2NzUzNjAwNDY='
+CLIENT_ID = ''
+CLIENT_KEY = ''
+CLIENT_SECRET = ''
 HOST = 'connector.gigagenie.ai'
 PORT = 4080
 
@@ -23,14 +23,14 @@ def getMetadata():
     message = CLIENT_ID + ':' + timestamp
 
     #python 3.x
-    CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET, 'utf-8')
-    message_bytes = bytes(message, 'utf-8')
-    signature = hmac.new(CLIENT_SECRET_BYTES, message_bytes, hashlib.sha256).hexdigest()
+    # CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET, 'utf-8')
+    # message_bytes = bytes(message, 'utf-8')
+    # signature = hmac.new(CLIENT_SECRET_BYTES, message_bytes, hashlib.sha256).hexdigest()
 
     #python 2.x
-    # CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET).encode('utf-8')
-    # message_bytes = bytes(message).encode('utf-8')
-    # signature = hmac.new(CLIENT_SECRET, message, hashlib.sha256).hexdigest()
+    CLIENT_SECRET_BYTES = bytes(CLIENT_SECRET).encode('utf-8')
+    message_bytes = bytes(message).encode('utf-8')
+    signature = hmac.new(CLIENT_SECRET, message, hashlib.sha256).hexdigest()
 
     print(signature)
     metadata = [('x-auth-clientkey', CLIENT_KEY),
